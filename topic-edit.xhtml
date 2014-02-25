@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<?xml-stylesheet type="text/xsl" href="/callimachus/template.xsl"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+	xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+    xmlns:calli="http://callimachusproject.org/rdf/2009/framework#"
+    xmlns:meeting="http://localhost:8080/schema/">
+<head>
+	<title resource="?this">{rdfs:label}</title>
+</head>
+<body resource="?this">
+	<h1 property="rdfs:label" />
+	<form method="POST" action="" enctype="application/sparql-update" resource="?this">
+		<fieldset>
+			<div class="control-group">
+				<label for="label" class="control-label">Label</label>
+                <div class="controls">
+				    <input type="text" id="label" value="{rdfs:label}" class="auto-expand" required="required" />
+                </div>
+			</div>
+			<div class="control-group">
+				<label for="comment" class="control-label">Comment</label>
+                <div class="controls">
+				    <textarea id="comment" class="auto-expand">{rdfs:comment}</textarea>
+                </div>
+			</div>
+            <div class="control-group">
+                <label for="state" class="control-label">State</label>
+                <div class="controls">
+                    <select id="state" rel="meeting:state">
+                        <option selected="selected"
+                            about="?state" typeof="skos:Concept"
+                            rev="calli:hasComponent"
+                            resource="topic-state/"
+                            property="skos:prefLabel" />
+                    </select>
+                </div>
+            </div>
+    		<div class="form-actions">
+        		<button type="submit" class="btn btn-primary">Save</button>
+        		<button type="button" class="btn" onclick="location.replace('?view')">Cancel</button>
+        		<button type="button" class="btn-danger" onclick="calli.deleteResource(event)">Delete</button>
+            </div>
+        </fieldset>
+	</form>
+</body>
+</html>

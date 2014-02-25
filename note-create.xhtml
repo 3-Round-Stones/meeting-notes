@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<?xml-stylesheet type="text/xsl" href="/callimachus/template.xsl"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+	xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:dcterms="http://purl.org/dc/terms/">
+<head>
+	<title>New Note</title>
+    <script type="text/javascript">
+    jQuery(function($){
+        $('#datetime').val(new Date().toISOString()).change();
+        $('#isPartOf').append($('<span/>').attr('resource', location.pathname));
+    });
+    </script>
+</head>
+<body>
+	<h1>New Note</h1>
+	<form method="POST" action="" enctype="application/rdf+xml" typeof=""
+            onsubmit="return calli.saveResourceAs(event, $('#datetime').val().replace(/\W/g,''))">
+        <fieldset>
+            <span id="isPartOf" rel="dcterms:isPartOf">
+                <span resource="?journal" />
+            </span>
+			<div class="control-group">
+				<label for="datetime" class="control-label">Date</label>
+                <div class="controls">
+				    <input id="datetime" type="datetime" datatype="xsd:dateTime" value="{dcterms:date}" required="required" />
+                </div>
+			</div>
+			<div class="control-group">
+				<label for="comment" class="control-label">Comment</label>
+                <div class="controls">
+				    <textarea id="comment" class="auto-expand" autofocus="autofocus">{rdfs:comment}</textarea>
+                </div>
+			</div>
+            <div class="form-actions">
+    		    <button type="submit" class="btn btn-success">Create</button>
+            </div>
+        </fieldset>
+	</form>
+</body>
+</html>

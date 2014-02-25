@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<?xml-stylesheet type="text/xsl" href="/callimachus/template.xsl"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+	xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:dcterms="http://purl.org/dc/terms/">
+<head>
+	<title resource="?this">{dcterms:date}</title>
+</head>
+<body resource="?this">
+	<h1><time property="dcterms:date" /></h1>
+	<form method="POST" action="" enctype="application/sparql-update" resource="?this">
+		<fieldset>
+			<div class="control-group">
+				<label for="comment" class="control-label">Comment</label>
+                <div class="controls">
+				    <textarea id="comment" class="auto-expand">{rdfs:comment}</textarea>
+                </div>
+			</div>
+            <div dropzone="link s:text/uri-list" class="control-group"
+                    ondrop="return calli.insertResource(event)">
+                <label for="topic" class="control-label">Topics
+                    <a href="Topic"
+                        onclick="return calli.createResource(this, '?create=' + encodeURIComponent(this.href))"
+                        class="ui-icon ui-icon-newwin" />
+                </label>
+                <div id="topic" rel="dcterms:hasPart" class="vbox controls">
+                    <span about="?topic" rel="rdf:type" resource="Topic"
+                        property="rdfs:label" class="ui-state-highlight" />
+                </div>
+            </div>
+    		<div class="form-action">
+        		<button type="submit" class="btn btn-primary">Save</button>
+        		<button type="button" class="btn" onclick="location.replace('?view')">Cancel</button>
+        		<button type="button" class="btn-danger" onclick="calli.deleteResource(event)">Delete</button>
+            </div>
+        </fieldset>
+	</form>
+</body>
+</html>
