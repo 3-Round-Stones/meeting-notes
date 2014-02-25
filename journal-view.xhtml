@@ -9,21 +9,29 @@
 	<title resource="?this">{rdfs:label}</title>
 </head>
 <body resource="?this">
-    <h1 property="rdfs:label" />
-    <div id="sidebar">
-        <aside>
-            <p><a resource="Note" href="Note?create"
-                    onmousedown="href='?create='+encodeURIComponent(getAttribute('resource'))">
-                Create a new note</a></p>
-        </aside>
+    <div class="container">
+        <div class="page-header">
+            <h1 property="rdfs:label" />
+        </div>
+        <div class="row">
+            <div class="col-sm-8">
+                <pre class="wiki" property="rdfs:comment" />
+                <ul>
+                    <li rev="dcterms:isPartOf" resource="?note">
+                        <a href="?note">
+                            <time property="dcterms:date" />
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-sm-4">
+                <aside class="well well-sm">
+                    <p class="lead">
+                        <a resource="Note" href="Note?create" onclick="href='?create='+encodeURIComponent(getAttribute('resource'))">Create a new note</a>
+                    </p>
+                </aside>
+            </div>
+        </div>
     </div>
-	<pre class="wiki" property="rdfs:comment" />
-    <ul>
-        <li rev="dcterms:isPartOf" resource="?note">
-            <a href="?note">
-                <time property="dcterms:date" />
-            </a>
-        </li>
-    </ul>
 </body>
 </html>
