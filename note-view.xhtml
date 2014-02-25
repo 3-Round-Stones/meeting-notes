@@ -11,17 +11,29 @@
 	<title resource="?this">{dcterms:date}</title>
 </head>
 <body resource="?this">
-	<h1><time property="dcterms:date" /></h1>
-	<pre class="wiki" property="rdfs:comment" />
-    <ul>
-        <li rel="dcterms:hasPart" resource="?topic">
-            <a href="?topic">{rdfs:label}</a>
-            <span rel="meeting:state" resource="?state">
-                [<span title="{skos:definition}">
-                    {skos:prefLabel}
-                </span>]
-            </span>
-        </li>
-    </ul>
+    <div class="container">
+        <div class="page-header">
+            <h1><time property="dcterms:date" /></h1>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <pre class="wiki" property="rdfs:comment" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <ul>
+                    <li rel="dcterms:hasPart" resource="?topic">
+                        <a href="?topic">{rdfs:label}</a>
+                        <span rel="meeting:state" resource="?state">
+                            [<span title="{skos:definition}">
+                                {skos:prefLabel}
+                            </span>]
+                        </span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

@@ -9,33 +9,41 @@
 	<title resource="?this">{dcterms:date}</title>
 </head>
 <body resource="?this">
-	<h1><time property="dcterms:date" /></h1>
-	<form method="POST" action="" enctype="application/sparql-update" resource="?this">
-		<fieldset>
-			<div class="control-group">
-				<label for="comment" class="control-label">Comment</label>
-                <div class="controls">
-				    <textarea id="comment" class="auto-expand">{rdfs:comment}</textarea>
+    <div class="container">
+        <div class="page-header">
+            <h1><time property="dcterms:date" /></h1>
+        </div>
+        <form method="POST" action="" enctype="application/sparql-update" resource="?this">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label for="comment">Comment</label>
+                            <textarea id="comment" class="auto-expand form-control">{rdfs:comment}</textarea>
+                        </div>
+                        <div class="form-group" dropzone="link s:text/uri-list" ondrop="return calli.insertResource(event)">
+                            <label for="topic">Topics
+                                <a href="Topic" onclick="return calli.createResource(this, '?create=' + encodeURIComponent(this.href))">
+                                    <span class="glyphicon glyphicon-plus" />
+                                </a>
+                            </label>
+                            <div id="topic" rel="dcterms:hasPart">
+                                <span about="?topic" rel="rdf:type" resource="Topic" property="rdfs:label" class="label label-warning" />
+                            </div>
+                        </div>
+                    </div>
                 </div>
-			</div>
-            <div dropzone="link s:text/uri-list" class="control-group"
-                    ondrop="return calli.insertResource(event)">
-                <label for="topic" class="control-label">Topics
-                    <a href="Topic"
-                        onclick="return calli.createResource(this, '?create=' + encodeURIComponent(this.href))"
-                        class="ui-icon ui-icon-newwin" />
-                </label>
-                <div id="topic" rel="dcterms:hasPart" class="vbox controls">
-                    <span about="?topic" rel="rdf:type" resource="Topic"
-                        property="rdfs:label" class="ui-state-highlight" />
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">Save</button>
+                        	<button type="button" class="btn" onclick="location.replace('?view')">Cancel</button>
+                    		<button type="button" class="btn-danger" onclick="calli.deleteResource(event)">Delete</button>
+                        </div>
+                    </div>
                 </div>
             </div>
-    		<div class="form-action">
-        		<button type="submit" class="btn btn-primary">Save</button>
-        		<button type="button" class="btn" onclick="location.replace('?view')">Cancel</button>
-        		<button type="button" class="btn-danger" onclick="calli.deleteResource(event)">Delete</button>
-            </div>
-        </fieldset>
-	</form>
+        </form>
+    </div>
 </body>
 </html>
