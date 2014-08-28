@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<?xml-stylesheet type="text/xsl" href="/callimachus/template.xsl"?>
 <html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:xi="http://www.w3.org/2001/XInclude"
     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
 	xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
@@ -15,19 +15,24 @@
         </div>
         <div class="row">
             <div class="col-sm-8">
-                <pre class="wiki" property="rdfs:comment" />
+                <p property="rdfs:comment" />
                 <ul>
                     <li rev="dcterms:isPartOf" resource="?note">
                         <a href="?note">
-                            <time property="dcterms:date" />
+                            <time datetime="{dcterms:date}" />
                         </a>
                     </li>
                 </ul>
+                <script type="text/javascript">
+                    $('li time[datetime]').text(function(){
+                        return calli.parseDateTime(this).toLocaleString();
+                    });
+                </script>
             </div>
             <div class="col-sm-4">
                 <aside class="well well-sm">
                     <p class="lead">
-                        <a resource="Note" href="Note?create" onclick="href='?create='+encodeURIComponent(getAttribute('resource'))">Create a new note</a>
+                        <a resource="Note" href="Note" onclick="href='?create='+encodeURIComponent(getAttribute('resource'))">Create a new note</a>
                     </p>
                 </aside>
             </div>

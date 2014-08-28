@@ -1,47 +1,44 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<?xml-stylesheet type="text/xsl" href="/callimachus/template.xsl"?>
 <html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:xi="http://www.w3.org/2001/XInclude"
     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
 	xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
     xmlns:dcterms="http://purl.org/dc/terms/">
 <head>
 	<title resource="?this">{dcterms:date}</title>
+    <link id="topic" href="Topic" />
+    <link id="topic-search" href="topic-search.rq?results&amp;tqx=out:sparql-json&amp;q={q}" />
+    <script type="text/javascript" src="note.js"></script>
 </head>
-<body resource="?this">
+<body resource="?this" onload="comparison=calli.copyResourceData('#form')">
     <div class="container">
         <div class="page-header">
-            <h1><time property="dcterms:date" /></h1>
+            <h1><time datetime="{dcterms:date}" /></h1>
+            <script type="text/javascript">
+                $('h1 time[datetime]').text(calli.parseDateTime("{dcterms:date}").toLocaleString());
+            </script>
         </div>
-        <form method="POST" action="" enctype="application/sparql-update" resource="?this">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-4">
-                        <div class="form-group">
-                            <label for="comment">Comment</label>
-                            <textarea id="comment" class="auto-expand form-control">{rdfs:comment}</textarea>
-                        </div>
-                        <div class="form-group" dropzone="link s:text/uri-list" ondrop="return calli.insertResource(event)">
-                            <label for="topic">Topics
-                                <a href="Topic" onclick="return calli.createResource(this, '?create=' + encodeURIComponent(this.href))">
-                                    <span class="glyphicon glyphicon-plus" />
-                                </a>
-                            </label>
-                            <div id="topic" rel="dcterms:hasPart">
-                                <span about="?topic" rel="rdf:type" resource="Topic" property="rdfs:label" class="label label-warning" />
-                            </div>
-                        </div>
+        <form id="form" method="POST" action="" enctype="application/sparql-update" resource="?this"
+                onsubmit="calli.submitUpdate(comparison,event)">
+            <div class="row">
+                <fieldset class="col-sm-6">
+                    <div class="form-group">
+                        <label for="comment">Comment</label>
+                        <textarea id="comment" class="form-control"
+                            onchange="calli.updateProperty(event, 'rdfs:comment')">{rdfs:comment}</textarea>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-primary">Save</button>
-                        	<button type="button" class="btn" onclick="location.replace('?view')">Cancel</button>
-                    		<button type="button" class="btn btn-danger" onclick="calli.deleteResource(event)">Delete</button>
-                        </div>
+                    <div class="form-group">
+                        <label for="topics">Topics</label>
+                        <select id="topics" class="form-control" multiple="multiple"
+                                onchange="calli.updateResource(event,'dcterms:hasPart')">
+                            <option selected="selected" rel="dcterms:hasPart" resource="?topic" value="{?topic}">{rdfs:label}</option>
+                        </select>
                     </div>
-                </div>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                    <button type="button" class="btn" onclick="location.replace('?view')">Cancel</button>
+            		<button type="button" class="btn btn-danger" onclick="calli.deleteResource(event)">Delete</button>
+                </fieldset>
             </div>
         </form>
     </div>

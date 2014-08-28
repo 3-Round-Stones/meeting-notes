@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<?xml-stylesheet type="text/xsl" href="/callimachus/template.xsl"?>
 <html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:xi="http://www.w3.org/2001/XInclude"
     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
 	xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
@@ -19,7 +19,8 @@
         <div class="page-header">
             <h1>New Note</h1>
         </div>
-        <form method="POST" action="" enctype="application/rdf+xml" typeof="" onsubmit="return calli.saveResourceAs(event, $('#datetime').val().replace(/\W/g,''))">
+        <form method="POST" action="" enctype="text/turtle" typeof=""
+                onsubmit="calli.submitTurtle(event, $('#datetime').val().replace(/\W/g,''))">
             <div class="row">
                 <fieldset class="col-sm-4">
                     <span id="isPartOf" rel="dcterms:isPartOf">
@@ -27,11 +28,13 @@
                     </span>
                     <div class="form-group">
                         <label for="datetime">Date</label>
-                        <input id="datetime" type="datetime" datatype="xsd:dateTime" value="{dcterms:date}" required="required" class="form-control" />
+                        <input id="datetime" type="datetime" datatype="xsd:dateTime" value="{dcterms:date}" required="required" class="form-control"
+                            onchange="calli.updateProperty(event, 'dcterms:date')" />
                     </div>
                     <div class="form-group">
                         <label for="comment">Comment</label>
-                        <textarea id="comment" class="auto-expand form-control" autofocus="autofocus">{rdfs:comment}</textarea>
+                        <textarea id="comment" class="form-control" autofocus="autofocus"
+                            onchange="calli.updateProperty(event, 'rdfs:comment')">{rdfs:comment}</textarea>
                     </div>
                 </fieldset>
             </div>
