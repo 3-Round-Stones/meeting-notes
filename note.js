@@ -22,7 +22,7 @@ jQuery(function($){
                 return url; // already exists
             }, function(xhr) {
                 if (xhr.status != 404) return calli.reject(xhr);
-                return calli.createResource('#topics', '?create=' + encodeURIComponent($('#topic').prop('href')) + '#' + label);
+                return calli.createResource('#topics', '?create=' + encodeURIComponent($('#topic').prop('href')) + '#' + encodeURIComponent(label));
             }).then(function(resource){
                 return resource && {
                     value: resource,

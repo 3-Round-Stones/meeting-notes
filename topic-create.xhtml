@@ -10,7 +10,7 @@
 	<title>New Topic</title>
     <script type="text/javascript">
         jQuery(function($){
-            $('#label').val(window.location.hash.substring(1)).change();
+            $('#label').val(decodeURIComponent(window.location.hash.substring(1))).change();
         });
     </script>
 </head>
