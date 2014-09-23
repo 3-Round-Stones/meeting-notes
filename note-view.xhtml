@@ -3,12 +3,12 @@
     xmlns:xi="http://www.w3.org/2001/XInclude"
     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-	xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
     xmlns:dcterms="http://purl.org/dc/terms/"
     xmlns:skos="http://www.w3.org/2004/02/skos/core#"
     xmlns:meeting="http://localhost:8080/schema/">
 <head>
-	<title resource="?this">{dcterms:date}</title>
+    <title resource="?this">{dcterms:date}</title>
 </head>
 <body resource="?this">
     <div class="container">
@@ -18,25 +18,17 @@
                 $('h1 time[datetime]').text(calli.parseDateTime("{dcterms:date}").toLocaleString());
             </script>
         </div>
-        <div class="row">
-            <div class="col-sm-6">
-                <p property="rdfs:comment" />
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-6">
-                <ul>
-                    <li rel="dcterms:hasPart" resource="?topic">
-                        <a href="?topic">{rdfs:label}</a>
-                        <span rel="meeting:state" resource="?state">
-                            [<span title="{skos:definition}">
-                                {skos:prefLabel}
-                            </span>]
-                        </span>
-                    </li>
-                </ul>
-            </div>
-        </div>
+        <p property="rdfs:comment" />
+        <ul>
+            <li rel="dcterms:hasPart" resource="?topic">
+                <a href="?topic">{rdfs:label}</a>
+                <span rel="meeting:state" resource="?state">
+                    [<span title="{skos:definition}">
+                        {skos:prefLabel}
+                    </span>]
+                </span>
+            </li>
+        </ul>
     </div>
 </body>
 </html>

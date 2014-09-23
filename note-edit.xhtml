@@ -3,10 +3,10 @@
     xmlns:xi="http://www.w3.org/2001/XInclude"
     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-	xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
     xmlns:dcterms="http://purl.org/dc/terms/">
 <head>
-	<title resource="?this">{dcterms:date}</title>
+    <title resource="?this">{dcterms:date}</title>
     <link id="topic" href="Topic" />
     <link id="topic-search" href="topic-search.rq?results&amp;tqx=out:sparql-json&amp;q={q}" />
     <script type="text/javascript" src="note.js"></script>
@@ -19,27 +19,27 @@
                 $('h1 time[datetime]').text(calli.parseDateTime("{dcterms:date}").toLocaleString());
             </script>
         </div>
-        <form id="form" method="POST" action="" enctype="application/sparql-update" resource="?this"
+        <form id="form" method="POST" action="" enctype="application/sparql-update" resource="?this" class="row"
                 onsubmit="calli.submitUpdate(comparison,event)">
-            <div class="row">
-                <fieldset class="col-sm-6">
-                    <div class="form-group">
-                        <label for="comment">Comment</label>
-                        <textarea id="comment" class="form-control"
-                            onchange="calli.updateProperty(event, 'rdfs:comment')">{rdfs:comment}</textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="topics">Topics</label>
-                        <select id="topics" class="form-control" multiple="multiple"
-                                onchange="calli.updateResource(event,'dcterms:hasPart')">
-                            <option selected="selected" rel="dcterms:hasPart" resource="?topic" value="{?topic}">{rdfs:label}</option>
-                        </select>
-                    </div>
+            <fieldset class="col-sm-6">
+                <div class="form-group">
+                    <label for="comment">Comment</label>
+                    <textarea id="comment" class="form-control"
+                        onchange="calli.updateProperty(event, 'rdfs:comment')">{rdfs:comment}</textarea>
+                </div>
+                <div class="form-group">
+                    <label for="topics">Topics</label>
+                    <select id="topics" class="form-control" multiple="multiple"
+                            onchange="calli.updateResource(event,'dcterms:hasPart')">
+                        <option selected="selected" rel="dcterms:hasPart" resource="?topic" value="{?topic}">{rdfs:label}</option>
+                    </select>
+                </div>
+                <div class="form-group">
                     <button type="submit" class="btn btn-primary">Save</button>
-                    <button type="button" class="btn" onclick="location.replace('?view')">Cancel</button>
+                    <button type="button" class="btn btn-default" onclick="location.replace('?view')">Cancel</button>
             		<button type="button" class="btn btn-danger" onclick="calli.deleteResource(event)">Delete</button>
-                </fieldset>
-            </div>
+                </div>
+            </fieldset>
         </form>
     </div>
 </body>
