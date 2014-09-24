@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<html xmlns="http://www.w3.org/1999/xhtml"
+<html version="XHTML+RDFa 1.0" xmlns="http://www.w3.org/1999/xhtml"
     xmlns:xi="http://www.w3.org/2001/XInclude"
     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
@@ -19,9 +19,9 @@
                 $('h1 time[datetime]').text(calli.parseDateTime("{dcterms:date}").toLocaleString());
             </script>
         </div>
-        <form id="form" method="POST" action="" enctype="application/sparql-update" resource="?this" class="row"
+        <form id="form" role="form" method="POST" action="" enctype="application/sparql-update" resource="?this" class="row"
                 onsubmit="calli.submitUpdate(comparison,event)">
-            <fieldset class="col-sm-6">
+            <fieldset class="col-sm-4">
                 <div class="form-group">
                     <label for="comment">Comment</label>
                     <textarea id="comment" class="form-control"
@@ -36,8 +36,8 @@
                 </div>
                 <div class="form-group">
                     <button type="submit" class="btn btn-primary">Save</button>
-                    <button type="button" class="btn btn-default" onclick="location.replace('?view')">Cancel</button>
-            		<button type="button" class="btn btn-danger" onclick="calli.deleteResource(event)">Delete</button>
+                    <button type="button" onclick="window.location.replace('?view')" class="btn btn-default">Cancel</button>
+                    <button type="button" onclick="calli.deleteResource(event)" class="btn btn-danger">Delete</button>
                 </div>
             </fieldset>
         </form>

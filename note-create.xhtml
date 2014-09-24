@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<html xmlns="http://www.w3.org/1999/xhtml"
+<html version="XHTML+RDFa 1.0" xmlns="http://www.w3.org/1999/xhtml"
     xmlns:xi="http://www.w3.org/2001/XInclude"
     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
     xmlns:dcterms="http://purl.org/dc/terms/">
 <head>
-	<title>New Note</title>
+    <title>New Note</title>
     <script type="text/javascript">
     jQuery(function($){
         $('#datetime').val(new Date().toISOString()).change();
@@ -19,8 +19,8 @@
         <div class="page-header">
             <h1>New Note</h1>
         </div>
-        <form method="POST" action="" enctype="text/turtle" typeof="" class="row"
-                onsubmit="calli.submitTurtle(event, $('#datetime').val().replace(/\W/g,''))">
+        <form role="form" method="POST" action="" enctype="text/turtle" typeof="" class="row"
+                onsubmit="calli.submitTurtle(event,calli.slugify($('#datetime').val()))">
             <fieldset class="col-sm-4">
                 <span id="isPartOf" rel="dcterms:isPartOf">
                     <span resource="?journal" />

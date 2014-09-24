@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<html xmlns="http://www.w3.org/1999/xhtml"
+<html version="XHTML+RDFa 1.0" xmlns="http://www.w3.org/1999/xhtml"
     xmlns:xi="http://www.w3.org/2001/XInclude"
     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
@@ -19,19 +19,19 @@
         <div class="page-header">
             <h1>New Topic</h1>
         </div>
-        <form method="POST" action="" enctype="text/turtle" typeof="" class="row"
-                onsubmit="calli.submitTurtle(event, calli.slugify($('#label').val()))">
+        <form role="form" method="POST" action="" enctype="text/turtle" typeof="" class="row"
+                onsubmit="calli.submitTurtle(event,calli.slugify($('#label').val()))">
             <fieldset class="col-sm-6">
                 <span rel="meeting:state" resource="topic-state/new" />
                 <div class="form-group">
                     <label for="label">Label</label>
-                    <input type="text" id="label" value="{rdfs:label}" class="form-control" required="required" autofocus="autofocus"
-                            onchange="calli.updateProperty(event, 'rdfs:label')" />
+                    <input type="text" class="form-control" id="label" value="{rdfs:label}" required="required" autofocus="autofocus"
+                                onchange="calli.updateProperty(event, 'rdfs:label')" />
                 </div>
                 <div class="form-group">
                     <label for="comment">Comment</label>
                     <textarea id="comment" class="form-control"
-                            onchange="calli.updateProperty(event, 'rdfs:comment')">{rdfs:comment}</textarea>
+                        onchange="calli.updateProperty(event, 'rdfs:comment')">{rdfs:comment}</textarea>
                 </div>
                 <div class="form-group">
                     <button type="submit" class="btn btn-primary">Add</button>
